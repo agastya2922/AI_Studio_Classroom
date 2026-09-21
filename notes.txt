@@ -1,0 +1,170 @@
+Retrieval-Augmented Generation (RAG) Notes
+
+What is RAG?
+
+Retrieval-Augmented Generation (RAG) is an AI architecture that
+combines: 1. Information Retrieval 2. Large Language Models (LLMs)
+
+Instead of relying only on the model’s internal knowledge, RAG retrieves
+relevant information from external sources and uses it to generate more
+accurate, up-to-date, and context-aware responses.
+
+------------------------------------------------------------------------
+
+Why Use RAG?
+
+-   Reduces hallucinations
+-   Uses private/company data
+-   Supports up-to-date knowledge
+-   Improves answer accuracy
+-   No need to retrain the LLM for every data update
+
+------------------------------------------------------------------------
+
+RAG Workflow
+
+User Query ↓ Embedding Model ↓ Vector Database Search ↓ Top-K Relevant
+Chunks ↓ Prompt Construction ↓ LLM (Mistral) ↓ Final Response
+
+------------------------------------------------------------------------
+
+Main Components
+
+1. Data Source
+
+-   PDF
+-   DOCX
+-   TXT
+-   CSV
+-   HTML
+-   Web Pages
+-   Database
+
+2. Document Loader
+
+Loads documents into the application.
+
+Examples: - PyPDFLoader - PyMuPDFLoader - TextLoader - CSVLoader -
+WebBaseLoader
+
+3. Text Splitter
+
+Splits large documents into smaller chunks.
+
+Common: - RecursiveCharacterTextSplitter - CharacterTextSplitter
+
+Important Parameters: - chunk_size - chunk_overlap
+
+4. Embedding Model
+
+Converts text into vectors.
+
+Examples: - sentence-transformers - Mistral Embeddings - Hugging Face
+Embeddings
+
+5. Vector Database
+
+Stores embeddings for similarity search.
+
+Popular Choices: - ChromaDB - FAISS - Pinecone - Qdrant - Weaviate
+
+6. Retriever
+
+Finds the most relevant document chunks.
+
+Methods: - Similarity Search - MMR Search - Hybrid Search
+
+7. Prompt Template
+
+Combines: - User Question - Retrieved Context - Instructions
+
+8. LLM
+
+Generates the final answer.
+
+Example: - Mistral AI
+
+------------------------------------------------------------------------
+
+Types of RAG
+
+-   Basic RAG
+-   Conversational RAG
+-   Multi-Document RAG
+-   Agentic RAG
+-   Graph RAG
+-   Hybrid RAG
+-   Multimodal RAG
+
+------------------------------------------------------------------------
+
+Common Libraries
+
+-   langchain
+-   langchain-community
+-   langchain-core
+-   langchain-mistralai
+-   langgraph
+-   chromadb
+-   sentence-transformers
+-   pypdf
+-   pymupdf
+-   python-docx
+-   pandas
+-   tiktoken
+-   fastapi
+-   streamlit
+-   python-dotenv
+
+------------------------------------------------------------------------
+
+Typical Folder Structure
+
+RAG_Project/ ├── app.py ├── requirements.txt ├── .env ├── data/ ├──
+chroma_db/ ├── src/ │ ├── loader.py │ ├── splitter.py │ ├──
+embeddings.py │ ├── vectordb.py │ ├── retriever.py │ ├── prompt.py │ ├──
+llm.py │ └── rag_pipeline.py
+
+------------------------------------------------------------------------
+
+Future Topics
+
+-   Query Expansion
+-   Re-ranking
+-   Metadata Filtering
+-   Parent-Child Retrieval
+-   Multi-Query Retrieval
+-   Context Compression
+-   Hybrid Search (BM25 + Vector Search)
+-   Self-RAG
+-   Corrective RAG (CRAG)
+-   GraphRAG
+-   Agentic RAG
+
+------------------------------------------------------------------------
+
+Best Practices
+
+-   Choose a good chunk size (300–1000 tokens depending on use case).
+-   Use chunk overlap (10–20%) to preserve context.
+-   Keep embeddings and vector DB in sync with source documents.
+-   Retrieve only the most relevant chunks (Top-K).
+-   Write clear system prompts.
+-   Evaluate retrieval quality as well as generation quality.
+
+------------------------------------------------------------------------
+
+Learning Roadmap
+
+1.  Understand RAG architecture
+2.  Document loading
+3.  Text chunking
+4.  Embeddings
+5.  Vector databases
+6.  Retrieval
+7.  Prompt engineering
+8.  Mistral integration
+9.  Build an end-to-end RAG pipeline
+10. Add conversational memory
+11. Deploy with FastAPI or Streamlit
+12. Explore advanced RAG techniques
